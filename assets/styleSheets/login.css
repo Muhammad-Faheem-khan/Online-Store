@@ -1,0 +1,85 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url(../images/shopping-cart-bg.webp) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+}
+.login-page {
+  background-color: white;
+  padding: 1rem;
+  border: 1px solid grey;
+  border-radius: 1rem;
+  -webkit-box-shadow: 0 0 15px rgb(141, 132, 132);
+  box-shadow: 0 0 15px rgb(141, 132, 132);
+  position: absolute;
+  top: 2.5rem;
+  left: 8.5rem;
+}
+.form-heading-main {
+  font-size: 1.5rem;
+}
+.form-heading-secondary {
+  font-size: 1.2rem;
+}
+.register-first-text {
+  font-size: 0.75rem;
+  color: rgb(126, 122, 122);
+}
+
+.input-field label {
+  font-size: 0.85rem;
+}
+.input-field input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d2d4e3;
+}
+.loginform {
+  background-color: white;
+}
+
+.login-btn {
+  background-color: rgb(240, 118, 18);
+  color: white;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+.login-btn:hover {
+  background-color: rgb(217, 106, 15);
+  color: white;
+}
+.link-text {
+  color: rgb(8, 135, 214);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+.invalid-login {
+  color: red;
+  font-size: 0.9rem;
+}
+.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 999px) {
+  .login-page {
+    top: 3.5rem;
+    left: 2.5rem;
+  }
+}
+@media screen and (max-width: 850px) {
+  .login-page {
+    top: 3.5rem;
+    left: 2.5rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main-div {
+    justify-content: center !important;
+  }
+}

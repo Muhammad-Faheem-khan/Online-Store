@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="../images/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../styleSheets/homePage.css" />
+    <title>Buy_It</title>
+  </head>
+  <body>
+    <script>
+      if (localStorage.getItem("currentUser") == null) {
+        window.location.replace("../../index.html");
+      }
+    </script>
+    <header class="d-flex">
+      <!-- Navbar -->
+      <nav id="navbar" class="navbar navbar-expand-lg">
+        <div class="ps-4">
+          <a href="../htmlFiles/storeHomePage.html" class="d-flex logo-link"
+            ><img class="logo-img" src="../images/favicon.ico" />
+            <h3 class="logo-heding mt-2">Buy_It</h3></a
+          >
+        </div>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse pb-3" id="navbarSupportedContent">
+          <ul class="nav-list navbar-nav pt-2">
+            <li class="nav-item ms-0">
+              <a href="../htmlFiles/storeHomePage.html" class="nav-link"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item ms-0">
+              <a href="#" class="nav-link">Categories</a>
+            </li>
+            <li class="nav-item ms-0">
+              <a href="#" class="nav-link">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <div class="search-box d-flex justify-content-between mt-1">
+                <input class="search" type="text" placeholder="Search" />
+                <button class="search-button">
+                  <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <div class="d-flex user-data">
+        <h4 class="user-name mt-3 me-2"></h4>
+        <div class="img-icon-status mt-2">
+          <button class="btn me-2 p-0 dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false"">
+          <img
+            src="../images/default-img.svg"
+            alt="user img"
+            class="img-icon me-1"
+          />
+        </button>
+          <ul class="dropdown-menu">
+            <li onclick="handleLogout(event)"><a class="dropdown-item">Logout</a></li>
+          </ul>
+          <div class="status-circle"></div>
+        </div>
+      </div>
+    </header>
+    <div class="main-container">
+      <!-- Showcase block  -->
+      <div class="showcase">
+        <img
+          src="../images/showcase.jpg"
+          class="img-fluid showcase-img"
+          alt="not found"
+        />
+        <div class="showcase-text row">
+          <div class="col-md-12">
+            <h1 class="fs-2 fw-bold text-white text-center">
+              Ready to Shop...!!!
+            </h1>
+            <p class="fs-4 text-white opacity-50 text-center">
+              Upto 75% sale on all Electronic Appliances
+            </p>
+            <p class="fs-4 text-white opacity-50 text-center">
+              Collect your credit points and get Heavy Discounts
+            </p>
+            <div class="mt-4 d-flex justify-content-center">
+              <button class="btn btn-success px-4 py-2 text-white me-3">
+                Check your Credits
+              </button>
+              <button class="btn btn-light px-4 py-2">Verified User?</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categories block  -->
+      <div class="category-section">
+        <h3 class="mt-4 heading ps-5">Categories</h3>
+        <div class="set-bg-category">
+          <ul class="categories-block mb-4 mt-4 listByProduct ms-5">
+            <!-- categories block will show here dunamically -->
+          </ul>
+          <img
+            src="../images/categories-bg.jpg"
+            class="category-img img-fluid"
+            alt="not found"
+          />
+        </div>
+      </div>
+
+      <!-- Products Block  -->
+      <div class="products-section">
+        <h3 class="mt-4 heading ps-5">Products</h3>
+
+        <button class="btn btn-primary ms-5" onclick="addNewProduct(event)">
+          <i class="fa-solid fa-plus pt-1 ms-2"></i> Add New Product
+        </button>
+        <div class="product-block mb-4 d-flex justify-content-center flex-wrap">
+          <!-- product block will show here dunamically -->
+        </div>
+        <nav class="pt-2 d-flex justify-content-center mb-3">
+          <ul class="pagination">
+            <li class="page-item disabled">
+              <span class="page-link">Previous</span>
+            </li>
+            <li class="page-item page page1 active">
+              <button class="page-link" onclick="pagination(event)">1</button>
+            </li>
+            <li class="page-item page page2">
+              <button class="page-link" onclick="pagination(event)">2</button>
+            </li>
+            <li class="page-item page page3">
+              <button class="page-link" onclick="pagination(event)">3</button>
+            </li>
+            <li class="page-item page page4">
+              <button class="page-link" onclick="pagination(event)">4</button>
+            </li>
+            <li class="page-item page page5">
+              <button class="page-link" onclick="pagination(event)">5</button>
+            </li>
+            <li class="page-item">
+              <button class="page-link" onclick="paginationNext(event)">
+                Next
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="productDetailSection mb-5 hidden">
+        <h3 class="text-center mt-5 heading">Product Details</h3>
+        <div
+          class="individual-product d-flex justify-content-center mx-0 mt-4 mb-5"
+        >
+          <!-- detail of specific product code will show here -->
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-window hidden pb-1">
+      <button class="close-btn btn btn-primary py-0">&#10006;</button>
+      <form
+        autocomplete="off"
+        class="mt-3 pb-1 px-4 pt-2"
+        name="updateData"
+        id="update-data"
+      >
+        <div class="input-field mb-1 d-flex justify-content-between">
+          <label for="brand" class="mb-1">Brand:</label>
+          <input
+            type="text"
+            required
+            class="form-control"
+            name="brand"
+            placeholder="Brand"
+          />
+        </div>
+        <div class="input-field mb-1 d-flex justify-content-between">
+          <label for="category" class="mb-1">Category:</label>
+          <input
+            type="text"
+            required
+            class="form-control"
+            name="category"
+            placeholder="Category"
+          />
+        </div>
+
+        <div class="input-field mb-1 d-flex justify-content-between">
+          <label for="discountPercentage" class="mb-1">Discounted %</label>
+          <input
+            type="number"
+            class="form-control"
+            name="discountPercentage"
+            placeholder="Dicount %"
+          />
+        </div>
+        <div class="input-field mb-1 d-flex justify-content-between">
+          <label for="price" class="mb-1">Price:</label>
+          <input
+            type="number"
+            required
+            class="form-control"
+            name="price"
+            placeholder="Price"
+          />
+        </div>
+        <div class="input-field mb-1 d-flex justify-content-between">
+          <label for="rating" class="mb-1">Rating:</label>
+          <input
+            type="number"
+            min="0"
+            max="5"
+            class="form-control"
+            name="rating"
+            placeholder="Rating"
+          />
+        </div>
+        <div class="input-field mb-1 d-flex justify-content-between">
+          <label for="stock" class="mb-1">Stock:</label>
+          <input
+            type="number"
+            class="form-control"
+            name="stock"
+            placeholder="Stock"
+          />
+        </div>
+        <div class="input-field mb-1 d-flex justify-content-between">
+          <label for="title" class="mb-1">Title:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="title"
+            placeholder="Title"
+          />
+        </div>
+        <div class="input-field mb-1 d-flex justify-content-between">
+          <label for="description" class="mb-1">Description:</label>
+          <textarea
+            type="text"
+            class="form-control"
+            name="description"
+            rows="2"
+            cols="50"
+            placeholder="Description"
+          ></textarea>
+        </div>
+        <div class="input-field mb-1 d-flex justify-content-between">
+          <label for="thumbnail" style="display: block" class="mb-1"
+            >Thumbnail:</label
+          >
+          <input type="file" class="form-control" name="thumbnail" />
+        </div>
+        <div class="input-field mb-1 d-flex justify-content-between">
+          <label for="images" style="display: block" class="mb-1"
+            >Other Images:</label
+          >
+          <input
+            type="file"
+            multiple
+            disabled
+            class="form-control"
+            name="images"
+          />
+        </div>
+        <div class="d-flex btn justify-content-evenly">
+          <button
+            type="button"
+            class="update-btn btn btn-primary px-3"
+            onclick="saveData(event)"
+          >
+            Update
+          </button>
+          <button
+            type="button"
+            class="update-btn btn btn-success px-3"
+            onclick="saveNewProduct(event)"
+          >
+            New Product
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- footer  -->
+    <footer>
+      <div class="row footer-link-section pb-0 gx-0">
+        <div class="col-md-3 ms-2 mt-2">
+          <h3 class="footer-subheading">Customer Care</h3>
+          <ul class="footer-list">
+            <li><a href="#"> Help Center </a></li>
+            <li><a href="#"> How to buy </a></li>
+            <li><a href="#"> Own your Store </a></li>
+            <li><a href="#"> Returns & refunds </a></li>
+            <li><a href="#"> Contact us </a></li>
+            <li><a href="#"> help Center </a></li>
+            <li><a href="#"> How to buy </a></li>
+            <li><a href="#"> Own your Store </a></li>
+            <li><a href="#"> Returns & refunds </a></li>
+            <li><a href="#"> Contact us </a></li>
+          </ul>
+
+          <h3 class="footer-subheading">Make Money With Us</h3>
+          <ul class="footer-list">
+            <li><a href="#"> Sell on Buy_It </a></li>
+            <li><a href="#"> Affiliate program of Buy_It </a></li>
+            <li><a href="#"> Sell your Product </a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-3 mt-5 ms-2">
+          <h3 class="footer-subheading">Buy_It</h3>
+          <ul class="footer-list">
+            <li><a href="#"> About Us </a></li>
+            <li><a href="#"> Contact us </a></li>
+            <li><a href="#"> Digital payment </a></li>
+            <li><a href="#"> Buy_It Blogs </a></li>
+            <li><a href="#"> Payments </a></li>
+            <li><a href="#"> Privacy terms </a></li>
+            <li><a href="#"> NTN Number: 1221-1222-11 </a></li>
+            <li><a href="#"> Online Shopping App </a></li>
+            <li><a href="#"> Returns & refunds </a></li>
+            <li><a href="#"> Contact us </a></li>
+            <li><a href="#"> Buy_It Blogs </a></li>
+            <li><a href="#"> Payments </a></li>
+          </ul>
+        </div>
+
+        <div class="col-md-5">
+          <div class="d-flex mt-4">
+            <img
+              src="../images/qrcode.png"
+              class="qrcode-img"
+              alt="QRcode of App"
+            />
+            <div class="ms-3 mt-4">
+              <img
+                src="../images/footer-img.png"
+                class="footer-logo-img"
+                alt="footer logo img"
+              />
+              <p class="card-text mb-0 footer-side-text">Happing Shopping</p>
+              <p class="card-text">Download App</p>
+            </div>
+          </div>
+          <div class="mt-5 d-flex mb-3 applestore-imgs">
+            <a href="#"
+              ><img
+                src="../images/applestore2.jpg"
+                class="apple-link-img mb-2"
+                alt="link to apple store"
+            /></a>
+            <a href="#"
+              ><img
+                src="../images/applestore .jpg"
+                class="apple-link-img mb-2"
+                alt="link to apple store"
+            /></a>
+            <a href="#"
+              ><img
+                src="../images/appgallery.png"
+                class="apple-link-img mb-2"
+                alt="not found"
+            /></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="../scriptFiles/homePage.js"></script>
+  </body>
+</html>
